@@ -1,0 +1,22 @@
+{
+  "name": "asii_task1",
+  "version": "1.0.0",
+  "description": "The first task at ASII",
+  "keywords": [
+    "huh"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "TODO"
+  },
+  "license": "ISC",
+  "author": "Materniuc Alex, Aiomesei Andrei, Elena Andrian",
+  "type": "commonjs",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "dependencies": {
+    "treejs": "^0.6.2"
+  }
+}
