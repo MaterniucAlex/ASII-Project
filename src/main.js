@@ -1,16 +1,55 @@
-
-date = new Date();
-
+let date = new Date();
 document.querySelector("#clock").innerText = (date.getHours() + ':' + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes());
 let timeUpdateID = setInterval(() => {
   document.querySelector("#clock").innerText = (date.getHours() + ':' + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes());
 }, 1000 * 60);
 
-// let nextDesktopID = 0;
-// let nextOpenedID = 0;
+///////////////////////////////////////////////////////////////
 
-// let desktopAppsIdList = []; -- momentan nmc
-// let openAppsIdList    = [];
+let windowsZindex = 1; //i hate this da e doar temporara. sper.
+
+function dragElement(element) {
+  let dragStartX = 0, dragStartY = 0;
+
+  const elementParent = element.parentElement;
+
+  element.onmousedown = dragMouseDown;
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+
+    dragStartX = e.clientX;
+    dragStartY = e.clientY;
+
+    document.onmouseup = closeDragElement;
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    elementParent.style.zIndex = windowsZindex;
+    windowsZindex++;
+
+    let offsetX = dragStartX - e.clientX;
+    let offsetY = dragStartY - e.clientY;
+
+    dragStartY = e.clientY;
+    dragStartX = e.clientX;
+
+    elementParent.style.top  = elementParent.offsetTop  - offsetY + "px";
+    elementParent.style.left = elementParent.offsetLeft - offsetX + "px";
+
+  }
+
+  function closeDragElement() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+
+///////////////////////////////////////////////////////////////
 
 class App 
 {
@@ -19,11 +58,7 @@ class App
     this.appName = appName;
     this.runApp = runAppFunction;
 
-    this.desktopId = -1;
-    this.openedId = -1;
-
-    this.appIcon = document.createElement("img");
-    this.appIcon.src = this.appIcon;
+    this.hasBeedAddedToDesktp = false;
 
     this.desktopApp = document.createElement("div");
     this.desktopApp.classList.add("desktopIcon");
@@ -56,7 +91,7 @@ class App
 
   addToDesktop() {
 
-    if (this.desktopId !== -1) return;
+    if (this.hasBeedAddedToDesktp === true) return;
 
     const desktop = document.querySelector("#desktop");
 
@@ -65,18 +100,19 @@ class App
     }
     desktop.appendChild(this.desktopApp);
 
-    // this.desktopId = nextDesktopID;
-    // nextDesktopID++;
+    this.hasBeedAddedToDesktp = true;
 
   }
 
   open() {
 
+    //taskbar icon
     const taskbar = document.querySelector("#taskbarAppList");
     const taskbarIcon = document.createElement("img");
     taskbarIcon.src = this.appIcon.src;
     taskbar.appendChild(taskbarIcon);
 
+    //main window
     const windows = document.querySelector("#windows");
     const newWindow = document.createElement("div");
     newWindow.classList.add("window");
@@ -104,12 +140,10 @@ class App
     newWindow.appendChild(windowContent);
 
     windows.appendChild(newWindow);
-    dragElement(newWindow);
+    dragElement(windowDragbar);
 
   }
 }
-
-let windowsZindex = 1; //i hate this da e doar temporara. sper.
 
 let sampleApp = new App();
 sampleApp.addToDesktop();
@@ -117,41 +151,3 @@ sampleApp.addToDesktop();
 let sampleApp2 = new App("Pen", "../assets/img/wallpaper.png");
 sampleApp2.addToDesktop();
 
-function dragElement(element) {
-  let dragStartX = 0, dragStartY = 0;
-
-  element.onmousedown = dragMouseDown;
-
-  function dragMouseDown(e) {
-    e = e || window.event;
-    e.preventDefault();
-
-    dragStartX = e.clientX;
-    dragStartY = e.clientY;
-
-    document.onmouseup = closeDragElement;
-    document.onmousemove = elementDrag;
-  }
-
-  function elementDrag(e) {
-    e = e || window.event;
-    e.preventDefault();
-    element.style.zIndex = windowsZindex;
-    windowsZindex++;
-
-    let offsetX = dragStartX - e.clientX;
-    let offsetY = dragStartY - e.clientY;
-
-    dragStartY = e.clientY;
-    dragStartX = e.clientX;
-
-    element.style.top  = element.offsetTop  - offsetY + "px";
-    element.style.left = element.offsetLeft - offsetX + "px";
-
-  }
-
-  function closeDragElement() {
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-}

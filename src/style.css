@@ -110,6 +110,8 @@ main {
   width: 40vw;
   height: 4vh;
 
+  cursor: move;
+
   background-color: var(--main-color);
   border-radius: 25px 25px 0 0;
   border: 2px solid black;
