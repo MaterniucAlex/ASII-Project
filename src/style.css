@@ -94,23 +94,27 @@ main {
   bottom: 0;
   top: 6vh;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   pointer-events: none;
 }
 
 .window {
+  width: 40vw;
+  height: 40vh;
+
+  top: 50%;
+  left: 50%;
+
   position: absolute;
+  display: flex;
+  flex-direction: column;
   pointer-events: auto;
 }
 
 .windowDragbar {
-  width: 40vw;
-  height: 4vh;
+  width: 100%;
+  height: 40px;
 
-  cursor: move;
+  flex-shrink: 0;
 
   background-color: var(--main-color);
   border-radius: 25px 25px 0 0;
@@ -118,10 +122,11 @@ main {
   border-bottom: 0;
 
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
   align-items: center;
   gap: 8px;
   padding-right: 12.5px;
+  padding-left: 12.5px;
 }
 
 .windowDragbar button {
@@ -137,9 +142,16 @@ main {
 }
 
 .windowContent {
-  width: 40vw;
-  height: 36vh;
+  width: 100%;
+  height: 100%;
   background-color: var(--white);
   border-radius: 0 0 25px 25px;
   border: 2px solid black;
+}
+
+.unselectable{
+  -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;   
 }
