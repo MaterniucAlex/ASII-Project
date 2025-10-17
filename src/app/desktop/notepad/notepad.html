@@ -1,0 +1,8 @@
+<div class="window" [style.left.px]="windowX()" [style.top.px]="windowY()">
+  <div class="windowDragbar" (mousedown)="startDrag($event)">
+    <button class=".closeButton" (click)="closeWindow()">X</button>
+  </div>
+  <div class="windowContent">
+    <textarea>Text</textarea>
+  </div>
+</div>

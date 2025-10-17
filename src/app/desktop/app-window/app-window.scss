@@ -1,0 +1,49 @@
+
+$main-color: #ff5f1f;
+$white: whitesmoke;
+$black: #1c1c1c;
+
+.window {
+  position: absolute;
+  pointer-events: auto;
+
+  .windowDragbar {
+    width: 40vw;
+    height: 4vh;
+
+    cursor: move;
+
+    background-color: $main-color;
+    border-radius: 25px 25px 0 0;
+    border: 2px solid black;
+    border-bottom: 0;
+
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 8px;
+    padding-right: 12.5px;
+
+    button {
+      color: $white;
+      background-color: red;
+
+      aspect-ratio: 1;
+      height: 50%;
+      border-radius: 50%;
+      border: 1px solid black;
+
+      font-size: 80%;
+    }
+  }
+
+  .windowContent {
+    width: 40vw;
+    height: 36vh;
+    background-color: $white;
+    border-radius: 0 0 25px 25px;
+    border: 2px solid black;
+    overflow: hidden;
+  }
+}
+

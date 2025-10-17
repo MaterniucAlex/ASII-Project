@@ -1,0 +1,19 @@
+<main>
+  <div id="taskbar">
+    <div id="taskbarAppList"></div>
+    <p id="clock">12:00</p>
+
+    <!--This should not be here da e pusa doar pt layout, pana gasim cu ce sa o inlocuim-->
+    <div id="taskbarAppList"></div>
+
+  </div>
+  <section id="desktop">
+    <app-app [appIcon]="'assets/img/defaultAppPic.png'" [appName]="'Notepad'" (click)="openApp()" />
+  </section>
+  <section id="windows">
+    @for (appId of appService.openedAppsList(); track $index)
+    {
+      <app-notepad [windowId]=appId />
+    }
+  </section>
+</main>
