@@ -10,6 +10,7 @@
   <section id="desktop">
     <app-app [appIcon]="'assets/img/defaultAppPic.png'" [appName]="'Notepad'" (click)="openApp('app-notepad')" />
     <app-app [appIcon]="'assets/img/defaultAppPic.png'" [appName]="'File Explorer'" (click)="openApp('app-file-explorer')" />
+    <app-app [appIcon]="'assets/img/defaultAppPic.png'" [appName]="'Calculator'" (click)="openApp('app-calculator')" />
   </section>
   <section id="windows">
     @for (app of appService.openedAppsList(); track $index)

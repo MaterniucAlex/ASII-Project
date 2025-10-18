@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AppServices } from '../app-services'
 import { Notepad } from '../notepad/notepad'
 import { FileExplorer } from '../file-explorer/file-explorer'
+import { Calculator } from '../calculator/calculator';
 
 @Component({
   selector: 'app-app-window',
@@ -35,6 +36,9 @@ export class AppWindow implements OnInit {
         break;
       case 'app-file-explorer':
         this.content.set(FileExplorer);
+        break;
+      case 'app-calculator':
+        this.content.set(Calculator);
         break;
       default:
         break;

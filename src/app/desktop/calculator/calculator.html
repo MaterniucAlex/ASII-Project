@@ -1,0 +1,36 @@
+<div id="calculator">
+	<div id="display">
+		<div id="expression">{{value2()}} {{operator()}}</div>
+		<div id="value">{{value1()}}</div>
+	</div>
+
+	<div id="keyboard">
+		<div id="top-keyboard">
+			<div class="clear key" (click)="removeValue()">CE</div>
+			<div class="clear key" (click)="removeExpression()">C</div>
+			<div class="clear key" (click)="removeLastDigit()">⌫</div>
+		</div>
+
+		<div id="bottom-keyboard">
+			<div class="key" (click)="addDigit(7)">7</div>
+			<div class="key" (click)="addDigit(8)">8</div>
+			<div class="key" (click)="addDigit(9)">9</div>
+			<div class="operator key" (click)="divide()">/</div>
+
+			<div class="key" (click)="addDigit(4)">4</div>
+			<div class="key" (click)="addDigit(5)">5</div>
+			<div class="key" (click)="addDigit(6)">6</div>
+			<div class="operator key" (click)="multiply()">*</div>
+
+			<div class="key" (click)="addDigit(1)">1</div>
+			<div class="key" (click)="addDigit(2)">2</div>
+			<div class="key" (click)="addDigit(3)">3</div>
+			<div class="operator key" (click)="subtract()">-</div>
+
+			<div class="operator key" (click)="modulo()">%</div>
+			<div class="key" (click)="addDigit(0)">0</div>
+			<div class="key" id="equal" (click)="calcResult()">=</div>
+			<div class="operator key" (click)="add()">+</div>
+		</div>
+	</div>
+</div>
