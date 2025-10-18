@@ -1,5 +1,5 @@
-import { Component, HostListener , signal, input, inject, ViewContainerRef, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, HostListener , signal, input, inject, ViewContainerRef, OnInit, computed } from '@angular/core';
+import { CommonModule, NgStyle } from '@angular/common';
 import { AppServices } from '../app-services'
 import { Notepad } from '../notepad/notepad'
 import { FileExplorer } from '../file-explorer/file-explorer'
@@ -7,7 +7,7 @@ import { Calculator } from '../calculator/calculator';
 
 @Component({
   selector: 'app-window',
-  imports: [CommonModule],
+  imports: [CommonModule, NgStyle],
   templateUrl: './app-window.html',
   styleUrl: './app-window.scss'
 })
@@ -15,13 +15,32 @@ export class AppWindow implements OnInit {
 
   appService = inject(AppServices);
 
-  windowX = signal(0);
-  windowY = signal(0);
+  windowX = signal(200);
+  windowY = signal(200);
+
+  windowW = signal(600);
+  windowH = signal(400);
+
+  cursor = signal('default');
+
+  windowSize = computed(() => {
+    return {
+      'left.px': this.windowX(),
+      'top.px':  this.windowY(),
+      'width.px': this.windowW(),
+      'height.px': this.windowH(),
+      'cursor': this.cursor()
+    };
+  })
 
   offsetX = signal(0);
   offsetY = signal(0);
 
   isDragging = signal(false);
+
+  isResizingRight = signal(false);
+  isResizingLeft= signal(false);
+  isResizingBottom = signal(false);
 
   contentName = input("");
   content = signal<any>('');
@@ -61,20 +80,83 @@ export class AppWindow implements OnInit {
     this.isDragging.set(true);
   }
 
+  @HostListener("window:mousedown", ["$event"])
+  onMouseDown(event: MouseEvent)
+  {
+    if (this.cursorOnRightBorder(event))
+      this.isResizingRight.set(true);
+    if (this.cursorOnLeftBorder(event))
+      this.isResizingLeft.set(true);
+    if (this.cursorOnBottomBorder(event))
+      this.isResizingBottom.set(true);
+  }
+
   @HostListener("window:mousemove", ["$event"])
   onMouseMove(event: MouseEvent)
   {
+    if (this.cursorOnLeftBorder(event) || this.cursorOnRightBorder(event))
+      this.cursor.set('ew-resize');
+    if (this.cursorOnBottomBorder(event))
+    {
+      this.cursor.set('ns-resize');
+      if (this.cursorOnRightBorder(event))
+        this.cursor.set('nwse-resize')
+      if (this.cursorOnLeftBorder(event))
+        this.cursor.set('nesw-resize')
+    }
+
+    if (this.isResizingRight())
+      this.windowW.update((val) => val + (event.clientX - (this.windowX() + val)));
+    if (this.isResizingLeft())
+    {
+      this.windowW.update((val) => val + (this.windowX() - event.clientX));
+      this.windowX.update((val) => val - (this.windowX() - event.clientX))
+    }
+    if (this.isResizingBottom())
+      this.windowH.update((val) => val + (event.clientY - (this.windowY() + val)));
+
+    ///////////////////////////////
 
     if (this.isDragging() === false)
       return;
 
     this.windowX.set(event.clientX + this.offsetX())
     this.windowY.set(event.clientY + this.offsetY())
+
   }
 
   @HostListener("window:mouseup", ["$event"])
   onMouseUp(event: MouseEvent)
   {
     this.isDragging.set(false);
+
+    this.isResizingRight.set(false);
+    this.isResizingLeft.set(false);
+    this.isResizingBottom.set(false);
+
+    this.cursor.set("default");
+  }
+
+  cursorOnLeftBorder(event: MouseEvent)
+  {
+    if (event.clientY < this.windowY() || event.clientY > this.windowY() + this.windowH()) return false;
+    if (event.clientX < this.windowX() || event.clientX > this.windowX() + 5) return false;
+    return true;
+  }
+
+  cursorOnRightBorder(event: MouseEvent)
+  {
+    if (event.clientY < this.windowY() || event.clientY > this.windowY() + this.windowH()) return false;
+    if (event.clientX > this.windowX() + this.windowW() || event.clientX < this.windowX() + this.windowW() - 5) return false;
+    return true;
+  }
+
+  cursorOnBottomBorder(event: MouseEvent)
+  {
+    if (event.clientX < this.windowX() || event.clientX > this.windowX() + this.windowW()) return false;
+    if (event.clientY > this.windowY() + this.windowH() || event.clientY < this.windowY() + this.windowH() - 5)
+      return false;
+
+    return true;
   }
 }
