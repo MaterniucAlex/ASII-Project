@@ -69,6 +69,24 @@ export class AppWindow implements OnInit {
     this.appService.closeApp(this.appId());
   }
 
+  maximizeWindow()
+  {
+    if (this.windowX() == 0)
+    {
+      this.windowX.set(200);
+      this.windowY.set(200);
+      this.windowW.set(600);
+      this.windowH.set(400);
+    }
+    else
+    {
+      this.windowX.set(0);
+      this.windowY.set(window.innerHeight / 100 * 6);
+      this.windowW.set(window.innerWidth);
+      this.windowH.set(window.innerHeight / 100 * 94);
+    }
+  }
+
   startDrag(event: MouseEvent)
   {
 

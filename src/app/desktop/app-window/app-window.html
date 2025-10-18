@@ -1,5 +1,6 @@
 <div class="window" [ngStyle]="windowSize()">
   <div class="window-dragbar" (mousedown)="startDrag($event)">
+    <button (click)="maximizeWindow()">O</button>
     <button (click)="closeWindow()">X</button>
   </div>
   <div class="window-content">
