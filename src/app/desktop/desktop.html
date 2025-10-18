@@ -14,7 +14,7 @@
   <section id="windows">
     @for (app of appService.openedAppsList(); track $index)
     {
-      <app-app-window [contentName]=app.appName [appId]=app.appId/>
+      <app-window [contentName]=app.appName [appId]=app.appId/>
     }
   </section>
 </main>

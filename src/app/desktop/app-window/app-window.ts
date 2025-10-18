@@ -5,7 +5,7 @@ import { Notepad } from '../notepad/notepad'
 import { FileExplorer } from '../file-explorer/file-explorer'
 
 @Component({
-  selector: 'app-app-window',
+  selector: 'app-window',
   imports: [CommonModule],
   templateUrl: './app-window.html',
   styleUrl: './app-window.scss'
