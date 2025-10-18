@@ -13,7 +13,7 @@
     <app-app [appIcon]="'assets/img/defaultAppPic.png'" [appName]="'Calculator'" (click)="openApp('app-calculator')" />
   </section>
   <section id="windows">
-    @for (app of appService.openedAppsList(); track $index)
+    @for (app of appService.openedAppsList(); track app.appId)
     {
       <app-window [contentName]=app.appName [appId]=app.appId/>
     }
