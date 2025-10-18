@@ -8,12 +8,13 @@
 
   </div>
   <section id="desktop">
-    <app-app [appIcon]="'assets/img/defaultAppPic.png'" [appName]="'Notepad'" (click)="openApp()" />
+    <app-app [appIcon]="'assets/img/defaultAppPic.png'" [appName]="'Notepad'" (click)="openApp('app-notepad')" />
+    <app-app [appIcon]="'assets/img/defaultAppPic.png'" [appName]="'File Explorer'" (click)="openApp('app-file-explorer')" />
   </section>
   <section id="windows">
-    @for (appId of appService.openedAppsList(); track $index)
+    @for (app of appService.openedAppsList(); track $index)
     {
-      <app-notepad [windowId]=appId />
+      <app-app-window [contentName]=app.appName [appId]=app.appId/>
     }
   </section>
 </main>

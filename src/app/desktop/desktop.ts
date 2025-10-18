@@ -1,23 +1,19 @@
 import { Component, signal, inject } from '@angular/core';
 import { App } from './app/app'
 import { AppWindow } from './app-window/app-window'
-import { Notepad } from './notepad/notepad'
 import { AppServices } from './app-services'
 
 @Component({
   selector: 'app-desktop',
-  imports: [App, AppWindow, Notepad],
+  imports: [App, AppWindow],
   templateUrl: './desktop.html',
   styleUrl: './desktop.scss'
 })
 export class Desktop {
   appService = inject(AppServices);
 
-  appId = signal(0);
-
-  openApp()
+  openApp(AppName: string)
   {
-    this.appService.openApp(this.appId());
-    this.appId.update(val => val+1);
+    this.appService.openApp({appName: AppName, appId:Date.now()});
   }
 }

@@ -1,16 +1,18 @@
-import { Component, HostListener , signal, input, inject, ViewContainerRef } from '@angular/core';
+import { Component, HostListener , signal, input, inject, ViewContainerRef, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { AppServices } from '../app-services'
+import { Notepad } from '../notepad/notepad'
+import { FileExplorer } from '../file-explorer/file-explorer'
 
 @Component({
   selector: 'app-app-window',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './app-window.html',
   styleUrl: './app-window.scss'
 })
-export class AppWindow {
+export class AppWindow implements OnInit {
 
   appService = inject(AppServices);
-  windowId = input(0);
 
   windowX = signal(0);
   windowY = signal(0);
@@ -20,12 +22,32 @@ export class AppWindow {
 
   isDragging = signal(false);
 
-  closeWindow()
+  contentName = input("");
+  content = signal<any>('');
+
+  appId = input(0);
+
+  ngOnInit()
   {
-    this.appService.closeApp(this.windowId());
+    switch (this.contentName()) {
+      case 'app-notepad':
+        this.content.set(Notepad);
+        break;
+      case 'app-file-explorer':
+        this.content.set(FileExplorer);
+        break;
+      default:
+        break;
+    }
   }
 
-  startDrag(event: MouseEvent) {
+  closeWindow()
+  {
+    this.appService.closeApp(this.appId());
+  }
+
+  startDrag(event: MouseEvent)
+  {
 
     event.preventDefault();
 

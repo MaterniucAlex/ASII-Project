@@ -7,4 +7,4 @@ import { AppWindow } from '../app-window/app-window'
   templateUrl: './notepad.html',
   styleUrl: './notepad.scss'
 })
-export class Notepad extends AppWindow { }
+export class Notepad { }
