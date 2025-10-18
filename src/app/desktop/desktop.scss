@@ -17,17 +17,18 @@ main {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  #taskbarAppList {
+
+  #taskbar-app-list {
     width: 25%;
     display: flex;
     align-items: center;
     gap: 10px;
     height: 100%;
-  }
 
-  #taskbarAppList img {
-    aspect-ratio: 1;
-    height: 85%;
+    img {
+      aspect-ratio: 1;
+      height: 85%;
+    }
   }
 
   #clock {

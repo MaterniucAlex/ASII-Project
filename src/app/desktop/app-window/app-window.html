@@ -1,6 +1,6 @@
 <div class="window" [style.left.px]="windowX()" [style.top.px]="windowY()">
-  <div class="windowDragbar" (mousedown)="startDrag($event)">
-    <button class=".closeButton" (click)="closeWindow()">X</button>
+  <div class="window-dragbar" (mousedown)="startDrag($event)">
+    <button (click)="closeWindow()">X</button>
   </div>
-  <div class="windowContent"></div>
+  <div class="window-content"></div>
 </div>

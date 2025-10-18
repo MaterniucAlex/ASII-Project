@@ -1,31 +1,17 @@
-.desktopIcon {
+.desktop-icon {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 5px;
-}
 
-.desktopIcon:hover {
-  filter: brightness(110%);
-  cursor: pointer;
-}
+  &:hover {
+    filter: brightness(110%);
+    cursor: pointer;
+  }
 
-.desktopIcon img {
-  aspect-ratio: 1;
-  width: 100%;
-}
-
-#windows {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 6vh;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  pointer-events: none;
+  img {
+    aspect-ratio: 1;
+    width: 100%;
+  }
 }

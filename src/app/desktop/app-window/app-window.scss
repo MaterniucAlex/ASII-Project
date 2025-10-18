@@ -7,7 +7,7 @@ $black: #1c1c1c;
   position: absolute;
   pointer-events: auto;
 
-  .windowDragbar {
+  .window-dragbar {
     width: 40vw;
     height: 4vh;
 
@@ -34,10 +34,12 @@ $black: #1c1c1c;
       border: 1px solid black;
 
       font-size: 80%;
+
+      cursor: pointer;
     }
   }
 
-  .windowContent {
+  .window-content {
     width: 40vw;
     height: 36vh;
     background-color: $white;
