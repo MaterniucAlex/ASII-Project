@@ -1,0 +1,68 @@
+$main-color: #ff5f1f;
+$white: whitesmoke;
+$black: #1c1c1c;
+
+main {
+  width: 100vw;
+  height: 100vh;
+
+  background-image: url("../../../public/assets/img/wallpaper.png");
+  background-size: cover;
+}
+
+#taskbar {
+  width: 100vw;
+  height: 6vh;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  #taskbar-app-list {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 100%;
+
+    img {
+      aspect-ratio: 1;
+      height: 85%;
+    }
+  }
+
+  #clock {
+    height: 60%;
+    color: $white;
+    background-color: $main-color;
+    border-radius: 25px;
+    padding: 10px 15px;
+
+    display: flex;
+    align-items: center;
+  }
+}
+
+
+#desktop {
+  display: grid;
+  grid-auto-columns: 80px;
+  grid-auto-rows: 80px;
+
+  gap: 50px;
+  padding: 20px;
+}
+
+#windows {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  pointer-events: none;
+}

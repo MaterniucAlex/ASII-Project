@@ -1,0 +1,21 @@
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  &:hover {
+    filter: brightness(110%);
+    cursor: pointer;
+  }
+
+  img {
+    aspect-ratio: 1;
+    width: 100%;
+  }
+
+  p {
+    text-align: center;
+  }
+}

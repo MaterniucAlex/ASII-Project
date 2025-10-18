@@ -1,0 +1,21 @@
+<main>
+  <div id="taskbar">
+    <div id="taskbar-app-list"></div>
+    <p id="clock">12:00</p>
+
+    <!--This should not be here da e pusa doar pt layout, pana gasim cu ce sa o inlocuim-->
+    <div id="taskbar-app-list"></div>
+
+  </div>
+  <section id="desktop">
+    <app-app [appIcon]="'assets/img/defaultAppPic.png'" [appName]="'Notepad'" (click)="openApp('app-notepad')" />
+    <app-app [appIcon]="'assets/img/defaultAppPic.png'" [appName]="'File Explorer'" (click)="openApp('app-file-explorer')" />
+    <app-app [appIcon]="'assets/img/defaultAppPic.png'" [appName]="'Calculator'" (click)="openApp('app-calculator')" />
+  </section>
+  <section id="windows">
+    @for (app of appService.openedAppsList(); track $index)
+    {
+      <app-window [contentName]=app.appName [appId]=app.appId/>
+    }
+  </section>
+</main>
