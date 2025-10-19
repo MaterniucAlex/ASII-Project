@@ -12,6 +12,11 @@ $black: #1c1c1c;
   justify-content: space-around;
   align-items: center;
 
+  #start-menu-area {
+    width: 33%;
+    position: relative;
+  }
+
   #taskbar-app-list {
     width: 33%;
     max-width: 33%;

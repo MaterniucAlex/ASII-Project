@@ -1,9 +1,10 @@
 import { Component, signal, inject, OnInit } from '@angular/core';
 import { AppServices } from '../app-services'
+import { StartMenu } from '../start-menu/start-menu'
 
 @Component({
   selector: 'app-taskbar',
-  imports: [],
+  imports: [StartMenu],
   templateUrl: './taskbar.html',
   styleUrl: './taskbar.scss'
 })
@@ -18,7 +19,7 @@ export class Taskbar implements OnInit {
     var h = today.getHours();
     var m = today.getMinutes();
 
-    this.time.set(h + ':' + (m < 10 ? ' ' : '') +m);
+    this.time.set(h + ':' + (m < 10 ? '0' : '') +m);
   }
 
   toggleApp(appId: number)

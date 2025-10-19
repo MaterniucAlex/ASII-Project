@@ -1,4 +1,4 @@
-<main>
+<main [style.background-image]="'url(' + aspectService.wallpaper() + ')'" [style.display]=aspectService.display()>
   <app-taskbar />
   <section id="desktop">
     <app-app [appName]="'Notepad'"/>
