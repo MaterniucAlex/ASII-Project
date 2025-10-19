@@ -57,6 +57,8 @@ export class AppWindow {
 
   maximizeWindow()
   {
+    if(this.appService.isMobile) return;
+
     if (this.windowX() == 0)
     {
       this.windowX.set(200);
@@ -77,6 +79,7 @@ export class AppWindow {
 
   startDrag(event: MouseEvent)
   {
+    if(this.appService.isMobile) return;
 
     event.preventDefault();
 
@@ -90,6 +93,8 @@ export class AppWindow {
   @HostListener("window:mousedown", ["$event"])
   onMouseDown(event: MouseEvent)
   {
+    if(this.appService.isMobile) return;
+
     if (this.cursorOnRightBorder(event)){
       this.isResizingRight.set(true);
       this.appService.focusApp(this.app().appId);
@@ -107,6 +112,8 @@ export class AppWindow {
   @HostListener("window:mousemove", ["$event"])
   onMouseMove(event: MouseEvent)
   {
+    if(this.appService.isMobile) return;
+
     if (this.cursorOnLeftBorder(event) || this.cursorOnRightBorder(event))
       this.cursor.set('ew-resize');
     if (this.cursorOnBottomBorder(event))
@@ -148,6 +155,39 @@ export class AppWindow {
     this.isResizingBottom.set(false);
 
     this.cursor.set("default");
+  }
+
+  lastWindowX: number = 0;
+  lastWindowY: number = 0;
+  lastWindowW: number = 0;
+  lastWindowH: number = 0;
+  switchedToMobile: boolean = false;
+
+  @HostListener("window:resize")
+  onViewportResize(){
+    if(this.appService.isMobile){
+      if(!this.switchedToMobile){
+        this.lastWindowX = this.windowX();
+        this.lastWindowY = this.windowY();
+        this.lastWindowW = this.windowW();
+        this.lastWindowH = this.windowH();
+        this.switchedToMobile = true;
+      }
+
+      this.windowX.set(0);
+      this.windowY.set(0);
+      this.windowW.set(window.innerWidth);
+      this.windowH.set(window.innerHeight);
+    }
+    else{
+      if(this.switchedToMobile){
+        this.windowX.set(this.lastWindowX);
+        this.windowY.set(this.lastWindowY);
+        this.windowW.set(this.lastWindowW);
+        this.windowH.set(this.lastWindowH);
+      }
+      this.switchedToMobile = false;
+    }
   }
 
   cursorOnLeftBorder(event: MouseEvent)
