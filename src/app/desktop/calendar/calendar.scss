@@ -1,0 +1,46 @@
+$bg-color: rgb(153, 153, 153);
+$day-color: rgb(206, 206, 206);
+
+#calendar-container{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+
+  input{
+    width: 100px;
+  }
+
+  #date-picker{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #week-days{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    align-items: center;
+  }
+
+  #month-days{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 6px;
+    padding: 6px;
+    height: 100%;
+    background-color: $bg-color;
+  }
+
+  .day{
+    box-sizing: border-box;
+    min-height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3vh;
+    background-color: $day-color;
+  }
+}
