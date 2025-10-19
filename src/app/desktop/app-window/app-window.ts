@@ -4,6 +4,7 @@ import { AppServices } from '../app-services'
 import { Notepad } from '../notepad/notepad'
 import { FileExplorer } from '../file-explorer/file-explorer'
 import { Calculator } from '../calculator/calculator';
+import { Calendar } from '../calendar/calendar';
 
 @Component({
   selector: 'app-window',
@@ -58,6 +59,9 @@ export class AppWindow implements OnInit {
         break;
       case 'app-calculator':
         this.content.set(Calculator);
+        break;
+      case 'app-calendar':
+        this.content.set(Calendar);
         break;
       default:
         break;

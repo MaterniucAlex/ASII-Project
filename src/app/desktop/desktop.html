@@ -11,6 +11,7 @@
     <app-app [appIcon]="'assets/img/defaultAppPic.png'" [appName]="'Notepad'" (click)="openApp('app-notepad')" />
     <app-app [appIcon]="'assets/img/defaultAppPic.png'" [appName]="'File Explorer'" (click)="openApp('app-file-explorer')" />
     <app-app [appIcon]="'assets/img/defaultAppPic.png'" [appName]="'Calculator'" (click)="openApp('app-calculator')" />
+    <app-app [appIcon]="'assets/img/defaultAppPic.png'" [appName]="'Calendar'" (click)="openApp('app-calendar')" />
   </section>
   <section id="windows">
     @for (app of appService.openedAppsList(); track app.appId)
