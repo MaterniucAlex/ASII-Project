@@ -50,6 +50,11 @@ export class AppWindow {
     appContent: null
   });
 
+  hideWindow()
+  {
+    this.appService.toggleAppVisibility(this.app().appId);
+  }
+
   closeWindow()
   {
     this.appService.closeApp(this.app().appId);
