@@ -85,6 +85,8 @@ export class AppWindow implements OnInit {
       this.windowW.set(window.innerWidth);
       this.windowH.set(window.innerHeight / 100 * 94);
     }
+
+    this.appService.focusApp(this.appId());
   }
 
   startDrag(event: MouseEvent)
@@ -95,18 +97,25 @@ export class AppWindow implements OnInit {
     this.offsetX.set(this.windowX() - event.clientX);
     this.offsetY.set(this.windowY() - event.clientY);
 
+    this.appService.focusApp(this.appId());
     this.isDragging.set(true);
   }
 
   @HostListener("window:mousedown", ["$event"])
   onMouseDown(event: MouseEvent)
   {
-    if (this.cursorOnRightBorder(event))
+    if (this.cursorOnRightBorder(event)){
       this.isResizingRight.set(true);
-    if (this.cursorOnLeftBorder(event))
+      this.appService.focusApp(this.appId());
+    }
+    if (this.cursorOnLeftBorder(event)){
       this.isResizingLeft.set(true);
-    if (this.cursorOnBottomBorder(event))
+      this.appService.focusApp(this.appId());
+    }
+    if (this.cursorOnBottomBorder(event)){
       this.isResizingBottom.set(true);
+      this.appService.focusApp(this.appId());
+    }
   }
 
   @HostListener("window:mousemove", ["$event"])

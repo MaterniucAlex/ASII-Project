@@ -15,7 +15,7 @@
   <section id="windows">
     @for (app of appService.openedAppsList(); track app.appId)
     {
-      <app-window [contentName]=app.appName [appId]=app.appId/>
+      <app-window [contentName]=app.appName [appId]=app.appId [style.z-index]="app.zIndex"/>
     }
   </section>
 </main>
