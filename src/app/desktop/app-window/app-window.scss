@@ -47,6 +47,13 @@ $black: #1c1c1c;
         filter: brightness(80%);
       }
     }
+
+    @media(max-width: 768px){
+      button{
+        height: 100%;
+        font-size: 100%;
+      }
+    }
   }
 
   .window-content {

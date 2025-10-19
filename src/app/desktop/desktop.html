@@ -1,5 +1,10 @@
 <main [style.background-image]="'url(' + aspectService.wallpaper() + ')'" [style.opacity]=aspectService.screenOpacity()>
-  <app-taskbar />
+  @if(!appService.isMobile){
+    <app-taskbar />
+  }
+  @else if(isMenuOpen()){
+    <app-mobile-menu />
+  }
   <section id="desktop">
     <app-app [appName]="'Notepad'"/>
     <app-app [appName]="'Calculator'"/>
@@ -11,4 +16,11 @@
       <app-window [app]=app [style.z-index]=app.zIndex [style.display]=app.display/>
     }
   </section>
+  @if(appService.isMobile){
+    <div id="mobile-buttons">
+      <button (click)="openAppMenu()">▢</button>
+      <button (click)="toggleAllAppsVisibility()">◯</button>
+      <button (click)="goBack()">◁</button>
+    </div>
+  }
 </main>

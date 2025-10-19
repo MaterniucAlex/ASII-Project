@@ -1,9 +1,12 @@
 <div class="window" [ngStyle]="windowSize()">
   <div class="window-dragbar" (mousedown)="startDrag($event)">
+
     <p>{{app().appName}}</p>
     <div>
-      <button (click)="hideWindow()">_</button>
-      <button (click)="maximizeWindow()">■</button>
+      @if (!appService.isMobile){
+        <button (click)="hideWindow()">_</button>
+        <button (click)="maximizeWindow()">■</button>
+      }
       <button (click)="closeWindow()">X</button>
     </div>
   </div>
