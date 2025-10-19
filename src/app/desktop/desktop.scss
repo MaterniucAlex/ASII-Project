@@ -33,7 +33,7 @@ main {
   pointer-events: none;
 
   @media(max-width: 768px){
-    bottom: 5vh;
+    bottom: 8vh;
   }
 }
 
@@ -49,13 +49,13 @@ main {
 
   background-color: $white;
 
-  height: 10%;
+  height: 8vh;
   width: 100%;
 
   z-index: 9999;
 
   button{
-    width: 23vw;
+    width: 25vw;
     height: 5vh;
 
     font-size: 3vh;

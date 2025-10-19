@@ -1,0 +1,11 @@
+<div id="mobile-menu">
+  <div id="mobile-menu-list">
+    @for (app of appService.openedAppsList(); track app.appId)
+    {
+      <div class="mobile-app-icon">
+        <img src="{{app.appIcon}}" (click)=toggleApp(app.appId)>
+        <div>{{app.appName}}</div>
+      </div>
+    }
+  </div>
+</div>

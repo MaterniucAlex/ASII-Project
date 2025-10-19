@@ -187,7 +187,7 @@ export class AppWindow {
       this.windowX.set(0);
       this.windowY.set(0);
       this.windowW.set(window.innerWidth);
-      this.windowH.set(window.innerHeight);
+      this.windowH.set(window.innerHeight - 85);
     }
     else{
       if(this.switchedToMobile){

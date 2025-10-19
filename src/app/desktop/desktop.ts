@@ -6,18 +6,21 @@ import { AppServices } from './app-services'
 
 
 import type AppData from '../../types/AppData'
+import { MobileMenu } from './mobile-menu/mobile-menu';
 
 @Component({
   selector: 'app-desktop',
-  imports: [App, AppWindow, Taskbar],
+  imports: [App, AppWindow, Taskbar, MobileMenu],
   templateUrl: './desktop.html',
   styleUrl: './desktop.scss'
 })
 export class Desktop {
   appService = inject(AppServices);
+  isMenuOpen = signal(false);
 
+  // Toggle mobile menu
   openAppMenu(){
-    
+    this.isMenuOpen.set(!this.isMenuOpen());
   }
 
   // Toggle app visibility for all visible/invisible apps 

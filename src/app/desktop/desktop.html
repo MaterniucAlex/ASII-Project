@@ -2,6 +2,9 @@
   @if(!appService.isMobile){
     <app-taskbar />
   }
+  @else if(isMenuOpen()){
+    <app-mobile-menu />
+  }
   <section id="desktop">
     <app-app [appName]="'Notepad'"/>
     <app-app [appName]="'Calculator'"/>
