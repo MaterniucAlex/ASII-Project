@@ -1,5 +1,7 @@
-import { Component, input, signal, inject, OnInit } from '@angular/core';
+import { Component, HostListener, input, signal, inject, OnInit, computed } from '@angular/core';
+import { NgStyle } from '@angular/common';
 import { AppServices } from '../app-services'
+import { AspectService } from '../aspect-service'
 import type AppData from '../../../types/AppData'
 import { Notepad } from '../notepad/notepad'
 import { Calculator } from '../calculator/calculator'
@@ -7,14 +9,22 @@ import { Calendar } from '../calendar/calendar';
 
 @Component({
   selector: 'app-app',
-  imports: [],
+  imports: [NgStyle],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App implements OnInit {
   appService = inject(AppServices);
+  aspectService = inject(AspectService);
 
   appName = input("");
+
+  appLoc = computed(() => {
+    return {
+      'left.px': this.appX(),
+      'top.px':  this.appY()
+    };
+  })
 
   appData = signal<AppData>({
     appId: Date.now(),
@@ -49,11 +59,46 @@ export class App implements OnInit {
         this.appData().appContent = null;
       break;
     }
+
+    let appPos: {appX: number, appY: number} = this.aspectService.getNextAppPos();
+    this.appX.set(appPos.appX);
+    this.appY.set(appPos.appY);
   }
 
   openApp()
   {
+    if (this.isDragging()) return;
     this.appData().appId = Date.now();
     this.appService.openApp(this.appData());
+  }
+
+  isDragging = signal(false);
+
+  appX = signal(0);
+  appY = signal(0);
+
+  startDrag(event: MouseEvent)
+  {
+    event.preventDefault();
+    this.isDragging.set(true);
+  }
+
+  @HostListener("window:mousemove", ["$event"])
+  onMouseMove(event: MouseEvent)
+  {
+    if (this.isDragging() === false)
+      return;
+
+    this.appX.set(event.clientX - 40)
+    this.appY.set(event.clientY - 40)
+
+    console.log(this.appX());
+
+  }
+
+  @HostListener("window:mouseup", ["$event"])
+  onMouseUp(event: MouseEvent)
+  {
+    this.isDragging.set(false);
   }
 }

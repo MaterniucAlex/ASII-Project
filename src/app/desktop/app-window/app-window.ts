@@ -2,6 +2,7 @@ import { Component, HostListener , signal, input, inject, ViewContainerRef, OnIn
 import { CommonModule, NgStyle } from '@angular/common';
 import type AppData from '../../../types/AppData'
 import { AppServices } from '../app-services'
+import { AspectService } from '../aspect-service'
 import { Notepad } from '../notepad/notepad'
 import { FileExplorer } from '../file-explorer/file-explorer'
 import { Calculator } from '../calculator/calculator';
@@ -12,9 +13,10 @@ import { Calculator } from '../calculator/calculator';
   templateUrl: './app-window.html',
   styleUrl: './app-window.scss'
 })
-export class AppWindow {
+export class AppWindow implements OnInit{
 
   appService = inject(AppServices);
+  aspectService = inject(AspectService);
 
   windowX = signal(200);
   windowY = signal(200);
@@ -33,6 +35,13 @@ export class AppWindow {
       'cursor': this.cursor()
     };
   })
+
+  ngOnInit()
+  {
+    let windowPos: {winX: number, winY: number} = this.aspectService.getNextWindowPos();
+    this.windowX.set(windowPos.winX);
+    this.windowY.set(windowPos.winY);
+  }
 
   offsetX = signal(0);
   offsetY = signal(0);
@@ -58,6 +67,7 @@ export class AppWindow {
   closeWindow()
   {
     this.appService.closeApp(this.app().appId);
+    this.aspectService.subNextWindowPos();
   }
 
   maximizeWindow()

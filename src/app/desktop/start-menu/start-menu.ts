@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { App } from '../app/app'
+import { StartApp } from './start-app/start-app'
 import { AspectService } from '../aspect-service';
 
 @Component({
   selector: 'app-start-menu',
-  imports: [App],
+  imports: [StartApp],
   templateUrl: './start-menu.html',
   styleUrl: './start-menu.scss'
 })
