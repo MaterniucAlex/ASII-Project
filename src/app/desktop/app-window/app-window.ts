@@ -24,6 +24,16 @@ export class AppWindow {
 
   cursor = signal('default');
 
+  constructor(){
+    if(this.appService.isMobile){
+      this.windowX.set(0);
+      this.windowY.set(0);
+
+      this.windowW.set(window.innerWidth);
+      this.windowH.set(window.innerHeight);
+    }
+  }
+
   windowSize = computed(() => {
     return {
       'left.px': this.windowX(),

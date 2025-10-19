@@ -37,6 +37,13 @@ $black: #1c1c1c;
 
       cursor: pointer;
     }
+
+    @media(max-width: 768px){
+      button{
+        height: 100%;
+        font-size: 100%;
+      }
+    }
   }
 
   .window-content {
