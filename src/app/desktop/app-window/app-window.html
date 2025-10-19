@@ -1,7 +1,8 @@
 <div class="window" [ngStyle]="windowSize()">
-  <div class="window-dragbar" (mousedown)="startDrag($event)">
-
-    <p>{{app().appName}}</p>
+  <div class="window-dragbar">
+    <div id="drag-area" (mousedown)="startDrag($event)">
+      <p>{{app().appName}}</p>
+    </div>
     <div>
       @if (!appService.isMobile){
         <button (click)="hideWindow()">_</button>

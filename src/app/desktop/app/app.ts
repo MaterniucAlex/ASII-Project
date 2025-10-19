@@ -67,7 +67,6 @@ export class App implements OnInit {
 
   openApp()
   {
-    if (this.isDragging()) return;
     this.appData().appId = Date.now();
     this.appService.openApp(this.appData());
   }
@@ -79,6 +78,8 @@ export class App implements OnInit {
 
   startDrag(event: MouseEvent)
   {
+    if(this.appService.isMobile) return;
+
     event.preventDefault();
     this.isDragging.set(true);
   }

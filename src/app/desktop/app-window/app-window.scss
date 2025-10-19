@@ -31,6 +31,12 @@ $black: #1c1c1c;
       gap: 12px;
     }
 
+    #drag-area
+    {
+      justify-content: left;
+      width: 100%;
+    }
+
     button {
       color: $white;
       background-color: transparent;

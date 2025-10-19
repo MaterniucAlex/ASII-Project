@@ -1,9 +1,12 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, inject } from '@angular/core';
+import { AppServices } from './app-services';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AspectService {
+
+  appService = inject(AppServices);
 
   wallpaper = signal('assets/img/wallpaper.png');
   screenOpacity = signal(100);
@@ -16,7 +19,7 @@ export class AspectService {
 
   getNextAppPos(): {appX: number, appY: number}
   {
-    let appOffset = 120
+    let appOffset = 120;
     let pos = {
       appX: this.nextAppX(),
       appY: this.nextAppY()
@@ -29,6 +32,10 @@ export class AspectService {
 
   getNextWindowPos(): {winX: number, winY: number}
   {
+    if(this.appService.isMobile)
+    {
+      return {winX: 0, winY: 0};
+    }
     let windowOffset = 30;
     let pos = {
       winX: this.nextWindowX(),
