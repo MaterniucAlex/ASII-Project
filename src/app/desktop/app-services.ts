@@ -21,6 +21,19 @@ export class AppServices {
     this.openedAppsList.update((apps) => apps.filter(x => x.appId !== appId));
   }
 
+  toggleAppVisibility(appId: number)
+  {
+    let foundApp = this.openedAppsList().find(app => app.appId = appId);
+    if (foundApp)
+    {
+      if (foundApp.display == 'none')
+        foundApp.display = 'contents';
+      else
+        foundApp.display = 'none';
+    }
+
+  }
+
   focusApp(appId: number)
   {
     this.openedAppsList.update((apps) => {

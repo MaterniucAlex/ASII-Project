@@ -5,6 +5,7 @@ export default interface AppData {
   appName: string;
   appId  : number;
   zIndex?: number;
+  display?: string;
 
   appContent: Type<any> | null;
 }

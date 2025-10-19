@@ -10,40 +10,6 @@ main {
   background-size: cover;
 }
 
-#taskbar {
-  width: 100vw;
-  height: 6vh;
-
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  #taskbar-app-list {
-    width: 25%;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    height: 100%;
-
-    img {
-      aspect-ratio: 1;
-      height: 85%;
-    }
-  }
-
-  #clock {
-    height: 60%;
-    color: $white;
-    background-color: $main-color;
-    border-radius: 25px;
-    padding: 10px 15px;
-
-    display: flex;
-    align-items: center;
-  }
-}
-
-
 #desktop {
   display: grid;
   grid-auto-columns: 80px;

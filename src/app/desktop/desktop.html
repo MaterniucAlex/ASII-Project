@@ -1,12 +1,5 @@
 <main>
-  <div id="taskbar">
-    <div id="taskbar-app-list"></div>
-    <p id="clock">12:00</p>
-
-    <!--This should not be here da e pusa doar pt layout, pana gasim cu ce sa o inlocuim-->
-    <div id="taskbar-app-list"></div>
-
-  </div>
+  <app-taskbar />
   <section id="desktop">
     <app-app [appName]="'Notepad'"/>
     <app-app [appName]="'Calculator'"/>
@@ -15,7 +8,7 @@
   <section id="windows">
     @for (app of appService.openedAppsList(); track app.appId)
     {
-      <app-window [app]=app [style.z-index]=app.zIndex/>
+      <app-window [app]=app [style.z-index]=app.zIndex [style.display]=app.display/>
     }
   </section>
 </main>
