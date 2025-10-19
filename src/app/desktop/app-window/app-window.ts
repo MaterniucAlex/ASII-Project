@@ -2,6 +2,7 @@ import { Component, HostListener , signal, input, inject, ViewContainerRef, OnIn
 import { CommonModule, NgStyle } from '@angular/common';
 import type AppData from '../../../types/AppData'
 import { AppServices } from '../app-services'
+import { AspectService } from '../aspect-service'
 import { Notepad } from '../notepad/notepad'
 import { FileExplorer } from '../file-explorer/file-explorer'
 import { Calculator } from '../calculator/calculator';
@@ -12,9 +13,10 @@ import { Calculator } from '../calculator/calculator';
   templateUrl: './app-window.html',
   styleUrl: './app-window.scss'
 })
-export class AppWindow {
+export class AppWindow implements OnInit{
 
   appService = inject(AppServices);
+  aspectService = inject(AspectService);
 
   windowX = signal(200);
   windowY = signal(200);
@@ -44,6 +46,13 @@ export class AppWindow {
     };
   })
 
+  ngOnInit()
+  {
+    let windowPos: {winX: number, winY: number} = this.aspectService.getNextWindowPos();
+    this.windowX.set(windowPos.winX);
+    this.windowY.set(windowPos.winY);
+  }
+
   offsetX = signal(0);
   offsetY = signal(0);
 
@@ -60,9 +69,15 @@ export class AppWindow {
     appContent: null
   });
 
+  hideWindow()
+  {
+    this.appService.toggleAppVisibility(this.app().appId);
+  }
+
   closeWindow()
   {
     this.appService.closeApp(this.app().appId);
+    this.aspectService.subNextWindowPos();
   }
 
   maximizeWindow()
@@ -93,8 +108,17 @@ export class AppWindow {
 
     event.preventDefault();
 
-    this.offsetX.set(this.windowX() - event.clientX);
-    this.offsetY.set(this.windowY() - event.clientY);
+    if (this.windowW() == window.innerWidth && this.windowX() == 0)
+    {
+      this.windowW.set(600);
+      this.windowH.set(400);
+      this.offsetX.set(-300);
+    }
+    else
+    {
+      this.offsetX.set(this.windowX() - event.clientX);
+      this.offsetY.set(this.windowY() - event.clientY);
+    }
 
     this.appService.focusApp(this.app().appId);
     this.isDragging.set(true);
@@ -203,21 +227,21 @@ export class AppWindow {
   cursorOnLeftBorder(event: MouseEvent)
   {
     if (event.clientY < this.windowY() || event.clientY > this.windowY() + this.windowH()) return false;
-    if (event.clientX < this.windowX() || event.clientX > this.windowX() + 5) return false;
+    if (event.clientX < this.windowX() || event.clientX > this.windowX() + 7) return false;
     return true;
   }
 
   cursorOnRightBorder(event: MouseEvent)
   {
     if (event.clientY < this.windowY() || event.clientY > this.windowY() + this.windowH()) return false;
-    if (event.clientX > this.windowX() + this.windowW() || event.clientX < this.windowX() + this.windowW() - 5) return false;
+    if (event.clientX > this.windowX() + this.windowW() || event.clientX < this.windowX() + this.windowW() - 7) return false;
     return true;
   }
 
   cursorOnBottomBorder(event: MouseEvent)
   {
     if (event.clientX < this.windowX() || event.clientX > this.windowX() + this.windowW()) return false;
-    if (event.clientY > this.windowY() + this.windowH() || event.clientY < this.windowY() + this.windowH() - 5)
+    if (event.clientY > this.windowY() + this.windowH() || event.clientY < this.windowY() + this.windowH() - 7)
       return false;
 
     return true;

@@ -1,4 +1,4 @@
-<div class="desktop-icon" (click)=openApp()>
+<div class="desktop-icon" (dblclick)=openApp() (mousedown)=startDrag($event) [ngStyle]="appLoc()">
   <img src="{{ appData().appIcon }}" alt=""/>
   <p>{{ appData().appName }}</p>
 </div>

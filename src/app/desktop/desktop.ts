@@ -3,6 +3,7 @@ import { App } from './app/app'
 import { AppWindow } from './app-window/app-window'
 import { Taskbar } from './taskbar/taskbar'
 import { AppServices } from './app-services'
+import { AspectService } from './aspect-service'
 
 
 import type AppData from '../../types/AppData'
@@ -16,6 +17,8 @@ import { MobileMenu } from './mobile-menu/mobile-menu';
 })
 export class Desktop {
   appService = inject(AppServices);
+  aspectService = inject(AspectService);
+  
   isMenuOpen = signal(false);
 
   // Toggle mobile menu

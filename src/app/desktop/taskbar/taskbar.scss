@@ -12,12 +12,25 @@ $black: #1c1c1c;
   justify-content: space-around;
   align-items: center;
 
+  #start-menu-area {
+    width: 33%;
+    position: relative;
+  }
+
   #taskbar-app-list {
-    width: 25%;
+    width: 33%;
+    max-width: 33%;
+    overflow-x: scroll;
     display: flex;
     align-items: center;
     gap: 10px;
     height: 100%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     img {
       aspect-ratio: 1;

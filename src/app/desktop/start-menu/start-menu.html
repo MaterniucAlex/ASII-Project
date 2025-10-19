@@ -1,0 +1,12 @@
+<div id="start-menu">
+  <div id="power-options">
+    <button id="power-off" (click)=powerOff()>Power off</button>
+    <button id="dark mode" (click)=toggleDarkMode()>Toggle dark mode</button>
+    <!-- <button id="dark mode">Dark mode</button> -->
+  </div>
+  <div id="app-list">
+    <app-start-app [appName]="'Notepad'" [style.position]="'static'"/>
+    <app-start-app [appName]="'Calculator'"/>
+    <app-start-app [appName]="'Calendar'"/>
+  </div>
+</div>
