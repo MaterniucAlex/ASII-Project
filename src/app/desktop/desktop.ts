@@ -21,20 +21,27 @@ export class Desktop {
   }
 
   // Toggle app visibility for all visible/invisible apps 
-  hideAllApps(){
+  toggleAllAppsVisibility(){
     const activeApps = this.appService.openedAppsList();
-    let existsVisibleApp: boolean = activeApps.some(app => app.display !== 'none');
+    const anyVisible = activeApps.some(app => app.display !== 'none');
 
-    if(existsVisibleApp){
-      const selectedApps = activeApps.filter(app => app.display !== 'none');
-      selectedApps.forEach( app => {this.appService.toggleAppVisibility(app.appId)});
-    }
-    else{
-      activeApps.forEach( app => {this.appService.toggleAppVisibility(app.appId)});
-    }
-  } 
+    this.appService.openedAppsList.update(apps =>
+      apps.map(a => ({ ...a, display: !anyVisible ? 'contents' : 'none' }))
+    );
+}
   
+  // Hide topmost visible app
   goBack(){
+    const activeApps = this.appService.openedAppsList();
+    const visibleApps = activeApps.filter(app => app.display !== 'none');
 
+    if (visibleApps.length === 0) return;
+
+    const maxZ = visibleApps.reduce((m, a) => Math.max(m, a.zIndex ?? 0), 0);
+
+    const topMostApp = activeApps.find(app => app.zIndex === maxZ);
+    if(topMostApp){
+      this.appService.toggleAppVisibility(topMostApp.appId);
+    }
   }
 }
