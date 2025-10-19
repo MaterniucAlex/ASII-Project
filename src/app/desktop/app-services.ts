@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { signal } from '@angular/core';
 import { AppWindow } from './app-window/app-window';
+import type AppData from '../../types/AppData'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppServices {
 
-  openedAppsList = signal<Array<{appName: string, appId: number, zIndex?: number}>>([]);
+  openedAppsList = signal<Array<AppData>>([]);
 
-  openApp(app: {appName: string, appId: number, zIndex?: number})
+  openApp(app: AppData)
   {
     this.openedAppsList.update((apps) => [...apps, app]);
     this.focusApp(app.appId);

@@ -1,10 +1,10 @@
 import { Component, HostListener , signal, input, inject, ViewContainerRef, OnInit, computed } from '@angular/core';
 import { CommonModule, NgStyle } from '@angular/common';
+import type AppData from '../../../types/AppData'
 import { AppServices } from '../app-services'
 import { Notepad } from '../notepad/notepad'
 import { FileExplorer } from '../file-explorer/file-explorer'
 import { Calculator } from '../calculator/calculator';
-import { Calendar } from '../calendar/calendar';
 
 @Component({
   selector: 'app-window',
@@ -12,7 +12,7 @@ import { Calendar } from '../calendar/calendar';
   templateUrl: './app-window.html',
   styleUrl: './app-window.scss'
 })
-export class AppWindow implements OnInit {
+export class AppWindow {
 
   appService = inject(AppServices);
 
@@ -43,34 +43,16 @@ export class AppWindow implements OnInit {
   isResizingLeft= signal(false);
   isResizingBottom = signal(false);
 
-  contentName = input("");
-  content = signal<any>('');
-
-  appId = input(0);
-
-  ngOnInit()
-  {
-    switch (this.contentName()) {
-      case 'app-notepad':
-        this.content.set(Notepad);
-        break;
-      case 'app-file-explorer':
-        this.content.set(FileExplorer);
-        break;
-      case 'app-calculator':
-        this.content.set(Calculator);
-        break;
-      case 'app-calendar':
-        this.content.set(Calendar);
-        break;
-      default:
-        break;
-    }
-  }
+  app = input<AppData>({
+    appIcon: '',
+    appName: '',
+    appId: 0,
+    appContent: null
+  });
 
   closeWindow()
   {
-    this.appService.closeApp(this.appId());
+    this.appService.closeApp(this.app().appId);
   }
 
   maximizeWindow()
@@ -90,7 +72,7 @@ export class AppWindow implements OnInit {
       this.windowH.set(window.innerHeight / 100 * 94);
     }
 
-    this.appService.focusApp(this.appId());
+    this.appService.focusApp(this.app().appId);
   }
 
   startDrag(event: MouseEvent)
@@ -101,7 +83,7 @@ export class AppWindow implements OnInit {
     this.offsetX.set(this.windowX() - event.clientX);
     this.offsetY.set(this.windowY() - event.clientY);
 
-    this.appService.focusApp(this.appId());
+    this.appService.focusApp(this.app().appId);
     this.isDragging.set(true);
   }
 
@@ -110,15 +92,15 @@ export class AppWindow implements OnInit {
   {
     if (this.cursorOnRightBorder(event)){
       this.isResizingRight.set(true);
-      this.appService.focusApp(this.appId());
+      this.appService.focusApp(this.app().appId);
     }
     if (this.cursorOnLeftBorder(event)){
       this.isResizingLeft.set(true);
-      this.appService.focusApp(this.appId());
+      this.appService.focusApp(this.app().appId);
     }
     if (this.cursorOnBottomBorder(event)){
       this.isResizingBottom.set(true);
-      this.appService.focusApp(this.appId());
+      this.appService.focusApp(this.app().appId);
     }
   }
 

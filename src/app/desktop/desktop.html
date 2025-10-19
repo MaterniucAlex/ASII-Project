@@ -8,15 +8,14 @@
 
   </div>
   <section id="desktop">
-    <app-app [appIcon]="'assets/img/defaultAppPic.png'" [appName]="'Notepad'" (click)="openApp('app-notepad')" />
-    <app-app [appIcon]="'assets/img/defaultAppPic.png'" [appName]="'File Explorer'" (click)="openApp('app-file-explorer')" />
-    <app-app [appIcon]="'assets/img/defaultAppPic.png'" [appName]="'Calculator'" (click)="openApp('app-calculator')" />
-    <app-app [appIcon]="'assets/img/defaultAppPic.png'" [appName]="'Calendar'" (click)="openApp('app-calendar')" />
+    <app-app [appName]="'Notepad'"/>
+    <app-app [appName]="'Calculator'"/>
+    <app-app [appName]="'Calendar'"/>
   </section>
   <section id="windows">
     @for (app of appService.openedAppsList(); track app.appId)
     {
-      <app-window [contentName]=app.appName [appId]=app.appId [style.z-index]="app.zIndex"/>
+      <app-window [app]=app [style.z-index]=app.zIndex/>
     }
   </section>
 </main>

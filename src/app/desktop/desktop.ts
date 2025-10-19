@@ -2,6 +2,10 @@ import { Component, signal, inject } from '@angular/core';
 import { App } from './app/app'
 import { AppWindow } from './app-window/app-window'
 import { AppServices } from './app-services'
+import { Notepad } from './notepad/notepad'
+import { Calculator } from './calculator/calculator'
+
+import type AppData from '../../types/AppData'
 
 @Component({
   selector: 'app-desktop',
@@ -11,9 +15,4 @@ import { AppServices } from './app-services'
 })
 export class Desktop {
   appService = inject(AppServices);
-
-  openApp(AppName: string)
-  {
-    this.appService.openApp({appName: AppName, appId:Date.now()});
-  }
 }
