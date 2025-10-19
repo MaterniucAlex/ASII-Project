@@ -31,4 +31,47 @@ main {
   align-items: center;
 
   pointer-events: none;
+
+  @media(max-width: 768px){
+    bottom: 5vh;
+  }
+}
+
+#mobile-buttons
+{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  background-color: $white;
+
+  height: 10%;
+  width: 100%;
+
+  z-index: 9999;
+
+  button{
+    width: 23vw;
+    height: 5vh;
+
+    font-size: 3vh;
+    font-weight: bold;
+
+    background-color: $main-color;
+    color: $white;
+
+    border-radius: 20%;
+
+    &:hover{
+      cursor: pointer;
+    }
+
+    &:active{
+      background-color: rgb(191, 0, 0);
+    }
+  }
 }

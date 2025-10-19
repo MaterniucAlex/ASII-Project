@@ -30,7 +30,7 @@ export class AppWindow {
       this.windowY.set(0);
 
       this.windowW.set(window.innerWidth);
-      this.windowH.set(window.innerHeight);
+      this.windowH.set(window.innerHeight - 100);
     }
   }
 

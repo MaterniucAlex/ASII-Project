@@ -1,5 +1,7 @@
 <main>
-  <app-taskbar />
+  @if(!appService.isMobile){
+    <app-taskbar />
+  }
   <section id="desktop">
     <app-app [appName]="'Notepad'"/>
     <app-app [appName]="'Calculator'"/>
@@ -11,4 +13,11 @@
       <app-window [app]=app [style.z-index]=app.zIndex [style.display]=app.display/>
     }
   </section>
+  @if(appService.isMobile){
+    <div id="mobile-buttons">
+      <button (click)="openAppMenu()">▢</button>
+      <button (click)="hideAllApps()">◯</button>
+      <button (click)="goBack()">◁</button>
+    </div>
+  }
 </main>

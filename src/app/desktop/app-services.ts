@@ -32,7 +32,7 @@ export class AppServices {
 
   toggleAppVisibility(appId: number)
   {
-    let foundApp = this.openedAppsList().find(app => app.appId = appId);
+    let foundApp = this.openedAppsList().find(app => app.appId === appId);
     if (foundApp)
     {
       if (foundApp.display == 'none')

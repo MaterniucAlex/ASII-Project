@@ -15,4 +15,26 @@ import type AppData from '../../types/AppData'
 })
 export class Desktop {
   appService = inject(AppServices);
+
+  openAppMenu(){
+    
+  }
+
+  // Toggle app visibility for all visible/invisible apps 
+  hideAllApps(){
+    const activeApps = this.appService.openedAppsList();
+    let existsVisibleApp: boolean = activeApps.some(app => app.display !== 'none');
+
+    if(existsVisibleApp){
+      const selectedApps = activeApps.filter(app => app.display !== 'none');
+      selectedApps.forEach( app => {this.appService.toggleAppVisibility(app.appId)});
+    }
+    else{
+      activeApps.forEach( app => {this.appService.toggleAppVisibility(app.appId)});
+    }
+  } 
+  
+  goBack(){
+
+  }
 }
