@@ -30,17 +30,17 @@ export class App implements OnInit {
 
     switch (this.appName()) {
       case 'Notepad':
-        this.appData().appIcon = 'assets/img/defaultAppPic.png';
+        this.appData().appIcon = 'assets/img/notepad.png';
         this.appData().appContent = Notepad;
       break;
 
       case 'Calculator':
-        this.appData().appIcon = 'assets/img/defaultAppPic.png';
+        this.appData().appIcon = 'assets/img/calculator.png';
         this.appData().appContent = Calculator;
       break;
 
       case 'Calendar':
-        this.appData().appIcon = 'assets/img/defaultAppPic.png';
+        this.appData().appIcon = 'assets/img/calendar.png';
         this.appData().appContent = Calendar;
       break;
 

@@ -15,27 +15,37 @@ $black: #1c1c1c;
 
     background-color: $main-color;
     border-radius: 15px 15px 0 0;
-    border: 2px solid black;
+    border: 5px solid $main-color;
     border-bottom: 0;
 
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
     align-items: center;
-    gap: 8px;
-    padding-right: 12.5px;
+    padding: 0 8px;
+
+    color: $white;
+
+    div {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
 
     button {
       color: $white;
-      background-color: red;
+      background-color: transparent;
 
       aspect-ratio: 1;
-      height: 50%;
+      height: 75%;
       border-radius: 50%;
-      border: 1px solid black;
 
-      font-size: 80%;
+      font-size: 100%;
 
       cursor: pointer;
+
+      &:hover {
+        filter: brightness(80%);
+      }
     }
   }
 
@@ -44,7 +54,7 @@ $black: #1c1c1c;
     height: calc(100% - 30px);
     background-color: $white;
     border-radius: 0 0 15px 15px;
-    border: 2px solid black;
+    border: 5px solid $main-color;
     overflow: hidden;
   }
 }

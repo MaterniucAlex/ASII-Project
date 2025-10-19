@@ -85,8 +85,17 @@ export class AppWindow {
 
     event.preventDefault();
 
-    this.offsetX.set(this.windowX() - event.clientX);
-    this.offsetY.set(this.windowY() - event.clientY);
+    if (this.windowW() == window.innerWidth && this.windowX() == 0)
+    {
+      this.windowW.set(600);
+      this.windowH.set(400);
+      this.offsetX.set(-300);
+    }
+    else
+    {
+      this.offsetX.set(this.windowX() - event.clientX);
+      this.offsetY.set(this.windowY() - event.clientY);
+    }
 
     this.appService.focusApp(this.app().appId);
     this.isDragging.set(true);
@@ -158,21 +167,21 @@ export class AppWindow {
   cursorOnLeftBorder(event: MouseEvent)
   {
     if (event.clientY < this.windowY() || event.clientY > this.windowY() + this.windowH()) return false;
-    if (event.clientX < this.windowX() || event.clientX > this.windowX() + 5) return false;
+    if (event.clientX < this.windowX() || event.clientX > this.windowX() + 7) return false;
     return true;
   }
 
   cursorOnRightBorder(event: MouseEvent)
   {
     if (event.clientY < this.windowY() || event.clientY > this.windowY() + this.windowH()) return false;
-    if (event.clientX > this.windowX() + this.windowW() || event.clientX < this.windowX() + this.windowW() - 5) return false;
+    if (event.clientX > this.windowX() + this.windowW() || event.clientX < this.windowX() + this.windowW() - 7) return false;
     return true;
   }
 
   cursorOnBottomBorder(event: MouseEvent)
   {
     if (event.clientX < this.windowX() || event.clientX > this.windowX() + this.windowW()) return false;
-    if (event.clientY > this.windowY() + this.windowH() || event.clientY < this.windowY() + this.windowH() - 5)
+    if (event.clientY > this.windowY() + this.windowH() || event.clientY < this.windowY() + this.windowH() - 7)
       return false;
 
     return true;
