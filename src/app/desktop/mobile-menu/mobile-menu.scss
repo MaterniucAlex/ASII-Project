@@ -11,6 +11,8 @@ $white: whitesmoke;
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
 
+  z-index: 9998;
+
   #mobile-menu-list{
     position: relative;
     display: grid;
