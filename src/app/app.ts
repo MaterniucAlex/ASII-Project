@@ -7,6 +7,9 @@ import { Desktop } from './desktop/desktop'
   selector: 'app-root',
   imports: [RouterOutlet, Desktop],
   template: `
+
+    <img src="favicon.png" id="logo">
+    <h2 id="logoTitle">NeroOS</h2>
     <app-desktop />
 
     <router-outlet />

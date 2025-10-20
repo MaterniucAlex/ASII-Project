@@ -1,4 +1,5 @@
 <main [style.background-image]="'url(' + aspectService.wallpaper() + ')'" [style.opacity]=aspectService.screenOpacity()>
+
   @if(!appService.isMobile){
     <app-taskbar />
   }

@@ -19,5 +19,65 @@ body {
   height: 100vh;
 
   overflow: hidden;
-  background-color: black;
+  background-color: #1c1c1c;
+
+  #logo {
+    position: absolute;
+    width: max(25vw, 400px);
+    aspect-ratio: 1;
+
+    left: calc(50% - max(25vw, 400px) / 2);
+    top: calc(50% - max(25vw, 400px) / 2);
+
+    animation: slideLogo 3s ease forwards;
+  }
+
+  #logoTitle {
+    color: white;
+    position: absolute;
+
+    width: 25vw;
+    height: 10vh;
+    text-align: center;
+
+    left: calc(50% - 25vw / 2);
+    top: calc(70% - 10vh / 2);
+
+    font-size: 5vw;
+
+    opacity: 0;
+    animation: textLogo 3s ease forwards;
+  }
+}
+
+@keyframes slideLogo {
+  0% {
+    transform: translate(-20vw, 100vh) rotate(-360deg);
+  }
+
+  45% {
+    transform: translateY(0) rotate(0);
+  }
+
+  55% {
+    transform: translateY(0) rotate(0);
+  }
+
+  100% {
+    transform: translate(+20vw, 100vh) rotate(360deg);
+  }
+}
+
+@keyframes textLogo {
+  30% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 0;
+  }
 }
