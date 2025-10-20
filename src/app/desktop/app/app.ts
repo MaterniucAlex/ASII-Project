@@ -93,13 +93,20 @@ export class App implements OnInit {
     this.appX.set(event.clientX - 40)
     this.appY.set(event.clientY - 40)
 
-    console.log(this.appX());
-
   }
 
   @HostListener("window:mouseup", ["$event"])
   onMouseUp(event: MouseEvent)
   {
     this.isDragging.set(false);
+
+    if (this.appY() > window.innerHeight - 120)
+      this.appY.set(window.innerHeight - 80)
+    if (this.appY() < 80)
+      this.appY.set(80);
+    if (this.appX() < 0)
+      this.appX.set(0);
+    if (this.appX() + 80 > window.innerWidth)
+      this.appX.set(window.innerWidth - 80);
   }
 }

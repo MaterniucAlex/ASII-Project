@@ -18,8 +18,14 @@ export class Taskbar implements OnInit {
     var today = new Date();
     var h = today.getHours();
     var m = today.getMinutes();
+    this.time.set(h + ':' + (m < 10 ? '0' : '') + m);
 
-    this.time.set(h + ':' + (m < 10 ? '0' : '') +m);
+    setInterval(() => {
+      var today = new Date();
+      var h = today.getHours();
+      var m = today.getMinutes();
+      this.time.set(h + ':' + (m < 10 ? '0' : '') + m);
+    }, 1000 * 30);
   }
 
   toggleApp(appId: number)

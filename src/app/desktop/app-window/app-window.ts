@@ -184,6 +184,15 @@ export class AppWindow implements OnInit{
   {
     this.isDragging.set(false);
 
+    if (this.windowY() > window.innerHeight)
+      this.windowY.set(window.innerHeight - this.windowH())
+    if (this.windowY() < 0)
+      this.windowY.set(0);
+    if (this.windowX() < 0)
+      this.windowX.set(0);
+    if (this.windowX() + this.windowW() > window.innerWidth)
+      this.windowX.set(window.innerWidth - this.windowW());
+
     this.isResizingRight.set(false);
     this.isResizingLeft.set(false);
     this.isResizingBottom.set(false);

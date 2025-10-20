@@ -35,6 +35,12 @@ $black: #1c1c1c;
     img {
       aspect-ratio: 1;
       height: 85%;
+
+      cursor: pointer;
+
+      &:hover {
+        filter: brightness(110%);
+      }
     }
   }
 
