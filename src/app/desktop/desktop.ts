@@ -28,6 +28,8 @@ export class Desktop {
 
   // Toggle app visibility for all visible/invisible apps 
   toggleAllAppsVisibility(){
+    if(this.isMenuOpen()) return;
+
     const activeApps = this.appService.openedAppsList();
     const anyVisible = activeApps.some(app => app.display !== 'none');
 

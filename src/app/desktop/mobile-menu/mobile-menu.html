@@ -3,6 +3,7 @@
     @for (app of appService.openedAppsList(); track app.appId)
     {
       <div class="mobile-app-icon">
+        <div class="exit-button" (click)=closeApp(app.appId)>X</div>
         <img src="{{app.appIcon}}" (click)=toggleApp(app.appId)>
         <div>{{app.appName}}</div>
       </div>

@@ -18,11 +18,11 @@ export class MobileMenu {
       // Mobile: Close menu, focus app, show if hidden
       this.desktop.isMenuOpen.set(false);
       
-      // Hide all apps and show only the selected one
+      // Make sure the selected app is visible
       this.appService.openedAppsList.update(apps =>
         apps.map(app => ({
           ...app,
-          display: app.appId === appId ? 'contents' : 'none'
+          display: app.appId === appId ? 'contents' : app.display
         }))
       );
       
@@ -31,5 +31,10 @@ export class MobileMenu {
       // Desktop: Just toggle visibility
       this.appService.toggleAppVisibility(appId);
     }
+  }
+
+  closeApp(appId: number)
+  {
+    this.appService.closeApp(appId);
   }
 }

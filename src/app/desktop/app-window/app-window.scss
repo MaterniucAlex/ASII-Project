@@ -7,6 +7,8 @@ $black: #1c1c1c;
   position: absolute;
   pointer-events: auto;
 
+  z-index: inherit;
+
   .window-dragbar {
     width: 100%;
     height: 30px;
@@ -55,10 +57,7 @@ $black: #1c1c1c;
     }
 
     @media(max-width: 768px){
-      button{
-        height: 100%;
-        font-size: 100%;
-      }
+      display: none;
     }
   }
 
@@ -69,6 +68,10 @@ $black: #1c1c1c;
     border-radius: 0 0 15px 15px;
     border: 5px solid $main-color;
     overflow: hidden;
+
+    @media(max-width: 768px){
+      height: 92vh;
+    }
   }
 }
 
