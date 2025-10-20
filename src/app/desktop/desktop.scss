@@ -6,9 +6,25 @@ main {
   width: 100vw;
   height: 100vh;
 
-  transition: opacity 1s;
 
   background-size: cover;
+
+  animation: openPc 3.5s forwards;
+  transition: opacity 1s;
+}
+
+@keyframes openPc {
+  0% {
+    opacity: 0;
+  }
+
+  80% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: none;
+  }
 }
 
 #desktop {
