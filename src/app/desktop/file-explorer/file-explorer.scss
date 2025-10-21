@@ -18,14 +18,11 @@
         }
 
         button {
-          background-color: #ddd;
-          border-radius: 20px;
+          padding: 5px 7px;
+          background-color: transparent;
           cursor: pointer;
-
-          padding: 0 7px;
-
           &:hover {
-            filter: brightness(120%);
+            text-decoration: underline;
           }
         }
     }

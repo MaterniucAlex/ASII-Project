@@ -30,17 +30,15 @@ export class App implements OnInit {
   appData = signal<AppData>({
     appId: Date.now(),
     appName: this.appName(),
-    appIcon: '',
-    appContent: null
+    appIcon: 'assets/img/defaultAppPic.png',
+    appContent: null,
+    zIndex: 0
   });
 
   ngOnInit()
   {
+    this.appData().appId = Date.now();
     this.appData().appName = this.appName();
-    this.appData().zIndex = 0;
-
-    this.appData().appIcon = 'assets/img/defaultAppPic.png';
-    this.appData().appContent = null;
 
     switch (this.appName()) {
       case 'Notepad':
@@ -59,7 +57,7 @@ export class App implements OnInit {
       break;
 
       case 'FileExplorer':
-       this.appData().appIcon = 'assets/img/Folder.png';
+        this.appData().appIcon = 'assets/img/Folder.png';
         this.appData().appContent = FileExplorer;
       break;
 
@@ -75,6 +73,7 @@ export class App implements OnInit {
   openApp()
   {
     this.appData().appId = Date.now();
+
     this.appService.openApp(this.appData());
   }
 

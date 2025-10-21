@@ -160,14 +160,24 @@ export class AppWindow implements OnInit{
     }
 
     if (this.isResizingRight())
-      this.windowW.update((val) => val + (event.clientX - (this.windowX() + val)));
+    {
+      let distanceToCursor = event.clientX - (this.windowX() + this.windowW());
+      this.windowW.set((this.windowW() + distanceToCursor > 600 ? this.windowW() + distanceToCursor : 600));
+    }
     if (this.isResizingLeft())
     {
-      this.windowW.update((val) => val + (this.windowX() - event.clientX));
-      this.windowX.update((val) => val - (this.windowX() - event.clientX))
+      let distanceToCursor = this.windowX() - event.clientX
+      if (this.windowX() - distanceToCursor < this.windowX() + this.windowW() - 600)
+      {
+        this.windowX.update(val => val - distanceToCursor);
+        this.windowW.update(val => val + distanceToCursor);
+      }
     }
     if (this.isResizingBottom())
-      this.windowH.update((val) => val + (event.clientY - (this.windowY() + val)));
+    {
+      let distanceToCursor = event.clientY - (this.windowY() + this.windowH());
+      this.windowH.set(this.windowH() + distanceToCursor > 400 ? this.windowH() + distanceToCursor : 400);
+    }
 
     ///////////////////////////////
 

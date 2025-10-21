@@ -1,2 +1,8 @@
-<textarea>Text</textarea>
+<div class="notepad">
+  <div>
+    <p>Fișier: {{ fileName() }}</p>
+    <button (click)="saveFile()">Salvare</button>
+  </div>
+  <textarea [ngModel]="content()" (ngModelChange)="content.set($event)" ></textarea>
+</div>
 
