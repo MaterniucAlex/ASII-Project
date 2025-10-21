@@ -30,7 +30,8 @@ body {
     left: calc(50% - max(25vw, 400px) / 2);
     top: calc(50% - max(25vw, 400px) / 2);
 
-    animation: slideLogo 3s ease forwards;
+    opacity: 0;
+    animation: slideLogo 3s ease;
   }
 
   #logoTitle {
@@ -53,6 +54,7 @@ body {
 
 @keyframes slideLogo {
   0% {
+    opacity: 1;
     transform: translate(-20vw, 100vh) rotate(-360deg);
   }
 
@@ -65,8 +67,10 @@ body {
   }
 
   100% {
+    opacity: 1;
     transform: translate(+20vw, 100vh) rotate(360deg);
   }
+
 }
 
 @keyframes textLogo {

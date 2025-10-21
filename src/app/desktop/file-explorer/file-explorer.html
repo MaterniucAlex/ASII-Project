@@ -1,6 +1,6 @@
 <div class="file-explorer">
   <div class="toolbar">
-    <button (click)="goBack()" [disabled]="service.currentPath() === '/'">Back</button>
+    <button (click)="goBack()" [disabled]="service.currentPath() === '/'">←</button>
     <input type="text" [value]="service.currentPath()" readonly />
 
     <button (click)="createFolderPrompt()">New Folder</button>

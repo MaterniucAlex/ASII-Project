@@ -16,6 +16,4 @@ import { Desktop } from './desktop/desktop'
   `,
   styles: [],
 })
-export class App {
-  protected readonly title = signal('ASII-Project');
-}
+export class App { }
