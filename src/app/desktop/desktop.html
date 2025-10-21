@@ -4,6 +4,7 @@
     <app-app [appName]="'Notepad'"/>
     <app-app [appName]="'Calculator'"/>
     <app-app [appName]="'Calendar'"/>
+    <app-app [appName]="'File Explorer'"/>
   </section>
   <section id="windows">
     @for (app of appService.openedAppsList(); track app.appId)
