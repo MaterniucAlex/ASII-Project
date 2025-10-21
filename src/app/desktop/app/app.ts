@@ -61,6 +61,11 @@ export class App implements OnInit {
         this.appData().appContent = FileExplorer;
       break;
 
+      case 'Terminal':
+        this.appData().appIcon = 'assets/img/Terminal.png';
+        this.appData().appContent = Notepad;
+      break;
+
       default:
       break;
     }
