@@ -10,7 +10,7 @@ import { FileExplorer } from '../file-explorer/file-explorer';
 
 @Component({
   selector: 'app-app',
-  imports: [NgStyle, FileExplorer],
+  imports: [NgStyle],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -39,6 +39,9 @@ export class App implements OnInit {
     this.appData().appName = this.appName();
     this.appData().zIndex = 0;
 
+    this.appData().appIcon = 'assets/img/defaultAppPic.png';
+    this.appData().appContent = null;
+
     switch (this.appName()) {
       case 'Notepad':
         this.appData().appIcon = 'assets/img/notepad.png';
@@ -55,14 +58,12 @@ export class App implements OnInit {
         this.appData().appContent = Calendar;
       break;
 
-      case 'File Explorer':
-       this.appData().appIcon = 'assets/img/defaultAppPic.png'; 
+      case 'FileExplorer':
+       this.appData().appIcon = 'assets/img/Folder.png';
         this.appData().appContent = FileExplorer;
       break;
 
       default:
-        this.appData().appIcon = 'assets/img/defaultAppPic.png';
-        this.appData().appContent = null;
       break;
     }
 
