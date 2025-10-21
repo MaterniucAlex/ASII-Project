@@ -1,7 +1,7 @@
 import { Component, inject, ViewChild, ElementRef, signal, Type } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FileExplorerService, FileItem } from './file-explorer.service';
-import { Notepad } from '../notepad/notepad'; // Importăm componenta Notepad
+import { Notepad } from '../notepad/notepad';
 
 @Component({
   selector: 'app-file-explorer',

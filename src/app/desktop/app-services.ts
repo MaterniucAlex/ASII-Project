@@ -19,7 +19,7 @@ export class AppServices {
       });
   }
 
- openApp(app: AppData)
+  openApp(app: AppData)
   {
    this.openedAppsList.update((apps) => [...apps, app]);
    this.focusApp(app.appId);
