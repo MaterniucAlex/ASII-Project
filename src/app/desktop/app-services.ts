@@ -19,11 +19,35 @@ export class AppServices {
       });
   }
 
-  openApp(app: AppData)
+   openApp(app: AppData)
   {
-    this.openedAppsList.update((apps) => [...apps, app]);
-    this.focusApp(app.appId);
+    this.openedAppsList.update((apps) => {
+      
+      // 1. Verifică dacă aplicația este Notepad ȘI deschide un fișier existent
+      if (app.appName === 'Notepad' && app.fileId) {
+        
+        // Caută o instanță existentă a ACELUI fișier
+        const existingApp = apps.find(x => x.appName === app.appName && x.fileId === app.fileId);
+
+        if (existingApp) {
+          // Fișierul este deja deschis. Doar îl focusăm și oprim deschiderea uneia noi.
+          this.focusApp(existingApp.appId);
+          return apps; 
+        }
+      }
+      
+      // 2. Dacă nu este un fișier deja deschis (sau dacă este altă aplicație), deschide o instanță nouă.
+      const newApps = [...apps, app];
+      this.focusApp(app.appId);
+      return newApps;
+    });
   }
+
+ // openApp(app: AppData)
+  //{
+   // this.openedAppsList.update((apps) => [...apps, app]);
+   // this.focusApp(app.appId);
+  //}
 
   closeApp(appId: number)
   {

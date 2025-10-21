@@ -1,0 +1,54 @@
+// src/app/file-explorer/file-explorer.scss
+
+.file-explorer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f0f0;
+
+    .toolbar {
+        padding: 8px;
+        background-color: #ddd;
+        display: flex;
+        gap: 10px;
+
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 4px;
+            border: 1px solid #ccc;
+        }
+    }
+
+    .items-list {
+        flex-grow: 1;
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        .file-item {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 5px;
+
+            &:hover {
+                background-color: #e0e0e0;
+            }
+
+            img {
+                width: 50px;
+                height: 50px;
+            }
+
+            p {
+                font-size: 0.8em;
+                text-align: center;
+                word-break: break-all;
+            }
+        }
+    }
+}

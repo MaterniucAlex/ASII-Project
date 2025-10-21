@@ -6,10 +6,11 @@ import type AppData from '../../../types/AppData'
 import { Notepad } from '../notepad/notepad'
 import { Calculator } from '../calculator/calculator'
 import { Calendar } from '../calendar/calendar';
+import { FileExplorer } from '../file-explorer/file-explorer';
 
 @Component({
   selector: 'app-app',
-  imports: [NgStyle],
+  imports: [NgStyle, FileExplorer],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -52,6 +53,11 @@ export class App implements OnInit {
       case 'Calendar':
         this.appData().appIcon = 'assets/img/calendar.png';
         this.appData().appContent = Calendar;
+      break;
+
+      case 'File Explorer':
+       this.appData().appIcon = 'assets/img/defaultAppPic.png'; 
+        this.appData().appContent = FileExplorer;
       break;
 
       default:
