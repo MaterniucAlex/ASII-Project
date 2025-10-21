@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { signal } from '@angular/core';
 import { AppWindow } from './app-window/app-window';
 import type AppData from '../../types/AppData'
@@ -9,6 +10,14 @@ import type AppData from '../../types/AppData'
 export class AppServices {
 
   openedAppsList = signal<Array<AppData>>([]);
+  isMobile: boolean = false;
+
+  constructor(private breakpointObserver: BreakpointObserver) {
+    this.breakpointObserver.observe([Breakpoints.Handset])
+      .subscribe(result => {
+        this.isMobile = result.matches;
+      });
+  }
 
    openApp(app: AppData)
   {
@@ -47,7 +56,7 @@ export class AppServices {
 
   toggleAppVisibility(appId: number)
   {
-    let foundApp = this.openedAppsList().find(app => app.appId = appId);
+    let foundApp = this.openedAppsList().find(app => app.appId === appId);
     if (foundApp)
     {
       if (foundApp.display == 'none')

@@ -6,8 +6,25 @@ main {
   width: 100vw;
   height: 100vh;
 
-  background-image: url("../../../public/assets/img/wallpaper.png");
+
   background-size: cover;
+
+  animation: openPc 3.5s forwards;
+  transition: opacity 1s;
+}
+
+@keyframes openPc {
+  0% {
+    opacity: 0;
+  }
+
+  80% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: none;
+  }
 }
 
 #desktop {
@@ -31,4 +48,47 @@ main {
   align-items: center;
 
   pointer-events: none;
+
+  @media(max-width: 768px){
+    bottom: 8vh;
+  }
+}
+
+#mobile-buttons
+{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  background-color: $white;
+
+  height: 8vh;
+  width: 100%;
+
+  z-index: 9999;
+
+  button{
+    width: 25vw;
+    height: 5vh;
+
+    font-size: 3vh;
+    font-weight: bold;
+
+    background-color: $main-color;
+    color: $white;
+
+    border-radius: 50px;
+
+    &:hover{
+      cursor: pointer;
+    }
+
+    &:active{
+      background-color: rgb(191, 0, 0);
+    }
+  }
 }
